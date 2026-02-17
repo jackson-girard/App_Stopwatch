@@ -1,6 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Platform, TouchableOpacity } from 'react-native';
 
+type Lap = {
+  id: string;
+  time: number;
+}
 export default function App() {
   return (
     <View style={styles.container}>
