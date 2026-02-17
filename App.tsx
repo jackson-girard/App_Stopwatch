@@ -59,20 +59,109 @@ export default function App() {
   };
 
   const handleClearLaps = () => setLaps([]);
+  const handleRemoveLap = (id: string) => setLaps((prev) => prev.filter((lap) => lap.id !== id));
   
-  const handleRemoveLap = (id: string) => {
-    setLaps((prev) => prev.filter((lap) => lap.id !== id));
-  };
-
-
 }
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#121212',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    fontSize: 22, 
+    fontWeight: "700",
+    color: "#666",
+    textAlign:"center",
+    letterSpacing: 6,
+    textTransform: "uppercase",
+    marginBottom: 24
+  },
+  timerCard: {
+    backgroundColor: "1A1A1A",
+    borderRadius: 16,
+    paddingVertical: 28,
+    alignItems:"center",
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "#2a2a2a"
+  },
+  timer: {
+    fontSize: 56,
+    color: "#00E5FF",
+    fontVariant: ["tabular-nums"],
+    fontWeight: "200",
+    letterSpacing: 2
+  },
+  buttonRow : {
+    flexDirection: "row",
+    marginBottom: 12,
+    gap: 10
+  },
+  button: {
+    flex: 1,
+    paddingVertical: 15, 
+    borderRadius: 10, 
+    alignItems: "center"
+  },
+  buttonDisabled: {opacity: 0.3},
+  buttonText: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "700",
+    letterSpacing: 0.5
+  },
+  lapItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#1E1E1E",
+    paddingVertical: 14,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    marginBottom: 8
+  },
+  lapLabel: {
+    flex: 1, 
+    color: "#aaa",
+    fontSize: 15
+  },
+  lapTime: {
+    color:"white",
+    fontSize: 17,
+    fontVariant: ["tabular-nums"],
+    fontWeight: "300",
+    marginRight: 12
+  },
+  deleteBtn: {
+    width: 28, 
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#2a2a2a",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  deleteText: {
+    color: "#666",
+    fontSize: 12, 
+    fontWeight: "700"
+  },
+  emptyState: {
+    alignItems: "center",
+    paddingTop: 40,
+    opacity: 0.35
+  },
+  emptyText: {
+    color: "#555",
+    fontSize: 15,
+    fontWeight: "600",
+    marginBottom: 4
+  },
+  emptySubtext: {
+    color: "555",
+    fontSize: 12
+  }
+
 });
