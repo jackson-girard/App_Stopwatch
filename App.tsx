@@ -61,8 +61,44 @@ export default function App() {
   const handleClearLaps = () => setLaps([]);
   const handleRemoveLap = (id: string) => setLaps((prev) => prev.filter((lap) => lap.id !== id));
   
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Stopwatch</Text>
+
+      <View style={styles.timerCard}>
+        <Text style={styles.timer}>{formatTime(time)}</Text>
+      </View>
+
+      <View style={styles.buttonRow}>
+        {!isRunning ? (
+          <Button label="Start" onPress={handleStart} color="#4CAF50" />
+        ) : (
+          <Button label="Pause" onPress={handlePause} color="#FFC107" />
+        )}
+        <Button label="Stop" onPress={handleStop} color="#F44336" disabled={!isRunning && time === 0} />
+      </View>
+    </View>
+  )
+
 }
 
+type ButtonProps = {
+  label: string;
+  onPress: () => void;
+  color: string;
+  disabled?:boolean;
+};
+
+const Button = ({label, onPress, color, disabled = false}: ButtonProps) => (
+  <TouchableOpacity
+    style={[styles.button, {backgroundColor:color}, disabled && styles.buttonDisabled]}
+    onPress={onPress}
+    disabled={disabled}
+    activeOpacity={0.75}
+  > 
+    <Text style={styles.buttonText}>{label}</Text>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   container: {
