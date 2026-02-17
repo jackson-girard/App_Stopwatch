@@ -80,7 +80,7 @@ export default function App() {
 
       <View style={styles.buttonRow}>
         <Button label="Lap" onPress={handleLap} color="#2196F3" disabled={!isRunning && time === 0}/>
-        <Button label="ClearLaps" onPress={handleClearLaps} color="#555" disabled={laps.length === 0}/>
+        <Button label="Clear Laps" onPress={handleClearLaps} color="#555" disabled={laps.length === 0}/>
       </View>
 
       <FlatList
