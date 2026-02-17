@@ -77,9 +77,35 @@ export default function App() {
         )}
         <Button label="Stop" onPress={handleStop} color="#F44336" disabled={!isRunning && time === 0} />
       </View>
-    </View>
-  )
 
+      <View style={styles.buttonRow}>
+        <Button label="Lap" onPress={handleLap} color="#2196F3" disabled={!isRunning && time === 0}/>
+        <Button label="ClearLaps" onPress={handleClearLaps} color="#555" disabled={laps.length === 0}/>
+      </View>
+
+      <FlatList
+        data={laps}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={{paddingBottom: 40}}
+        ListEmptyComponent={
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyText}>No Laps</Text>
+            <Text style={styles.emptySubtext}>Tap Lab to Record Time</Text>
+          </View>
+        }
+        renderItem={({item, index}) => (
+          <View style={styles.lapItem}>
+            <Text style={styles.lapLabel}>Lap {laps.length - index}</Text>
+            <Text style={styles.lapTime}>{formatTime(item.time)}</Text>
+            <TouchableOpacity onPress={() => handleRemoveLap(item.id)} hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+            style={styles.deleteBtn}>
+              <Text style={styles.deleteText}>x</Text>
+            </TouchableOpacity>
+          </View>
+        )}>    
+      </FlatList>
+    </View>
+  );
 }
 
 type ButtonProps = {
@@ -106,6 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: Platform.OS === "ios" ? 60 : 40
   },
   title: {
     fontSize: 22, 
@@ -196,7 +223,7 @@ const styles = StyleSheet.create({
     marginBottom: 4
   },
   emptySubtext: {
-    color: "555",
+    color: "#555",
     fontSize: 12
   }
 
